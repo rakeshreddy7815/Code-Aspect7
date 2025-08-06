@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Aspect7</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+    scroll-behavior: smooth;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    padding: 20px 0;
+}
+/* Header & Nav */
+header {
+    background: #0e0f38;
+    color: #fff;
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+}
+.logo-container {
+    display: flex;
+    align-items: center;
+    font-family: sans-serif; /* You can choose a different font */
+    font-size: 2em;         /* Adjust the size as needed */
+    font-weight: bold;      /* Optional: makes the text bold */
+}
+
+.logo-image {
+    width: 80px; /* Adjust the size of the image as needed */
+    height: auto;
+    margin-right: 10px; /* Adds some space between the image and the text */
+    cursor: pointer;
+}
+
+.code {
+    color: white;
+    cursor: pointer;
+}
+
+.aspect {
+    color: green;
+    cursor: pointer;
+}
+
+.seven {
+    color: yellow;
+    cursor: pointer;
+}
+header nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    position: relative; /* This is crucial for positioning the underline */
+    transition: color 0.3s;
+}
+
+/* Remove the old hover effect */
+/* header nav ul li a:hover {
+    color: #ffd700;
+} */
+
+/* New hover effect with a white underline */
+header nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px; /* Adjust the distance of the underline from the text */
+    left: 50%; /* Start the underline from the center */
+    width: 0;
+    height: 2px; /* Thickness of the underline */
+    background-color: #fff;
+    transition: all 0.3s ease-in-out;
+    transform: translateX(-50%); /* Center the underline */
+}
+
+header nav ul li a:hover::after {
+    width: 100%; /* Expand the underline to full width on hover */
+}
+
+/* Sections */
+main {
+    padding-top: 60px; /* To account for the fixed header */
+}
+
+section {
+    padding: 60px 0;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff;
+}
+
+section:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+}
+
+/* About Section */
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.about-content img {
+    width: 300px;
+    height: auto;
+    border-radius: 50%;
+    transition: transform 0.4s, box-shadow 0.4s;
+}
+.about-content img:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgb(37, 35, 35);
+}
+.about-content p {
+    flex: 1;
+}
+
+/* Services & Projects Grid */
+.services-grid, .projects-grid, .worksamples-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    text-align: center;
+}
+
+.service-item, .project-item {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(20, 1, 52, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.service-item:hover, .project-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.service-item h3, .project-item h3 {
+    margin-top: 1rem;
+}
+
+.project-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.btn {
+    display: inline-block;
+    background: #333;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 15px;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background: #ffd700;
+    color: #333;
+}
+
+/* Work Samples */
+.sample-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(1, 34, 56, 0.1);
+    text-decoration: none;
+    color: #333;
+    transition: transform 0.3s;
+}
+
+.sample-item i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+/* You'll need to use an icon library like Font Awesome for these icons */
+/* For now, let's use placeholder classes */
+.icon-code:before { content: '💻'; }
+.icon-design:before { content: '🎨'; }
+.icon-write:before { content: '✍️'; }
+.icon-pdf:before { content: '📄'; }
+.icon-zip:before { content: '📦'; }
+.icon-image:before { content: '🖼️'; }
+
+/* Testimonials */
+.testimonial-slider {
+    position: relative;
+    max-width: 700px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.testimonial-item {
+    display: none;
+    text-align: center;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(1, 33, 57, 0.1);
+}
+
+.testimonial-item.active {
+    display: block;
+    animation: fadein 1s;
+}
+
+.testimonial-item p {
+    font-style: italic;
+    font-size: 1.2rem;
+}
+
+.slider-nav {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.dot {
+    height: 15px;
+    width: 15px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.6s ease;
+}
+
+.dot.active {
+    background-color: #333;
+}
+
+/* Footer */
+footer {
+    background: #333;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+}
+/* Footer Navigation Styling */
+.footer-nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.footer-nav ul li a:hover {
+    color: #ffd700;
+}
+/* Add this to your <style> section */
+footer ul li a {
+    text-decoration: none !important;
+    color: #fff;
+    transition: color 0.3s;
+}
+
+footer ul li a:hover {
+    color: #f89c4c;
+}
+footer .social-links {
+    margin-top: 10px;
+}
+footer .social-links a {
+    color: #fff;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: color 0.4s;
+    font-weight: bold;
+    font-size: 2.2rem; /* Increase this value for larger icons */
+    vertical-align: middle;
+}
+footer .social-links a:hover {
+    color: #f89c4c;
+}
+/* Instagram hover */
+footer .social-links a[href*="Instagram"]:hover {
+    color: #E4405F;
+}
+
+/* GitHub hover */
+footer .social-links a[href*="GitHub"]:hover {
+    color: #333;
+}
+
+/* Twitter hover */
+footer .social-links a[href*="Twitter"]:hover {
+    color: #1DA1F2;
+}
+
+/* Animation for fade-in effect */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header nav {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    header nav ul {
+        margin-top: 10px;
+    }
+    
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Add this at the very top inside <body> -->
+
+        <header>
+    <nav>
+            <div class="logo-container">
+            <img src="codeascent-removebg-preview.png" alt="Company Logo" class="logo-image">
+            <span class="code">Code</span>&nbsp;<span class="aspect">Aspect</span><span class="seven">7</span>
+             </div>
+
+        
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#worksamples">Work Samples</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#aspirations">Aspirations</a></li>
+        </ul>
+    </nav>
+</header>
+        <section id="about" class="fade-in">
+            <div class="container">
+                <h2> About Me </a></h2>
+                <div class="about-content">
+                  <a href="index (2).html" target="_blank"><img src="rocky2.jpg" alt="Profile Picture"></a>
+                    <p style="font-style: oblique; font-size: medium;">
+                       <strong> Hello! My name is <b>Rakesh Reddy</b> I am a passionate and dedicated <b>student</b> pursuing a degree in branch of <b>B.s.c(computers&science)</b>.<br> I have a strong interest in <b>web development</b>,graphic design and I am constantly learning and upskilling my skills.<br> I am a key player with a problem-solving mindset, and I'm always seeking for new challenges&opportunities to tackle.</strong>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="fade-in">
+            <div class="container">
+                <h2>My Services</h2>
+                <div class="services-grid">
+                    <div class="service-item">
+                        <i class="icon-code"></i>
+                        <h3>Web Development</h3>
+                        <p>I can create responsive and dynamic websites using HTML, CSS, and JavaScript. I'm also familiar with frameworks like React and Node.js.</p>
+                    </div>
+                    <div class="service-item">
+                        <i class="icon-design"></i>
+                        <h3>Graphic Design</h3>
+                        <p>I'm proficient in creating visually appealing designs for logos, social media, and presentations using tools like Adobe Photoshop and Illustrator.</p>
+                    </div>
+                    <div class="service-item">
+                        <i class="icon-write"></i>
+                        <h3>Content Writing</h3>
+                        <p>I can produce high-quality, engaging content for blogs, websites, and other platforms. I am an excellent communicator with a strong grasp of grammar.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="fade-in">
+            <div class="container">
+                <h2>My Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-item">
+                        <img src="project1.jpg" alt="Project 1">
+                        <h3>E-commerce Website</h3>
+                        <p>A fully functional e-commerce platform built with innovative technology. It features user authentication, a shopping cart, and payment integration.</p>
+                        <a href="#" class="btn">View Project</a>
+                    </div>
+                    <div class="project-item">
+                        <img src="project2.jpg" alt="Project 2">
+                        <h3>Data Visualization Dashboard</h3>
+                        <p>An interactive dashboard created with Python and D3.js to visualize public datasets, allowing users to filter and analyze data.</p>
+                        <a href="#" class="btn">View Project</a>
+                    </div>
+                    <div class="project-item">
+                        <img src="project3.jpg" alt="Project 3">
+                        <h3>Mobile Game</h3>
+                        <p>A 2D platformer game developed with Unity. It features custom animations, level design, and a scoring system.</p>
+                        <a href="#" class="btn">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="worksamples" class="fade-in">
+            <div class="container">
+                <h2>Work Samples</h2>
+                <p>Here are some examples of my work. You can download or view them to get a better idea of my skills.</p>
+                <div class="worksamples-grid">
+                    <a href="sample1.pdf" download class="sample-item">
+                        <i class="icon-pdf"></i>
+                        <span>Resume/CV</span>
+                    </a>
+                    <a href="sample2.zip" download class="sample-item">
+                        <i class="icon-zip"></i>
+                        <span>Code Repository</span>
+                    </a>
+                    <a href="sample3.jpg" class="sample-item">
+                        <i class="icon-image"></i>
+                        <span>Design Mockup</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="fade-in">
+            <div class="container">
+                <h2>Testimonials</h2>
+                <div class="testimonial-slider">
+                    <div class="testimonial-item active">
+                        <p>"[Your Name] is an excellent problem-solver and a pleasure to work with. Their dedication and creativity are truly commendable."</p>
+                        <h4>- Professor [Name], [University]</h4>
+                    </div>
+                    <div class="testimonial-item">
+                        <p>"I was impressed with their attention to detail and ability to deliver a project ahead of schedule. Highly recommended!"</p>
+                        <h4>- Colleague [Name], [Company]</h4>
+                    </div>
+                    <div class="testimonial-item">
+                        <p>"Their work on the [Project Name] was outstanding. They brought innovative ideas to the table and were a key part of our team's success."</p>
+                        <h4>- Project Lead [Name]</h4>
+                    </div>
+                </div>
+                <div class="slider-nav">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+        </section>
+
+        <section id="aspirations" class="fade-in">
+            <div class="container">
+                <h2>My Personal Aspirations</h2>
+                <p>
+                    My long-term goal is to become a [Your Dream Job, e.g., Senior Software Engineer, UX/UI Lead, Data Scientist]. I am passionate about using my skills to create impactful and user-friendly solutions that solve real-world problems. I aspire to work in a collaborative environment where I can continue to learn, grow, and contribute to meaningful projects.
+                </p>
+                <p>
+                    In the short term, I am focused on [Your Immediate Goals, e.g., mastering React, building a personal project with machine learning, interning at a tech company]. I believe continuous learning and hands-on experience are the keys to achieving my dreams.
+                </p>
+            </div>
+        </section>
+    </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <nav class="footer-nav">
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#worksamples">Work Samples</a></li>
+                    <li><a href="#aspirations">Aspirations</a></li>
+                </ul>
+            </nav>
+
+            <ul style="list-style: none; padding: 0; margin: 20px 0; display: flex; justify-content: center; gap: 20px;">
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="indexcontact.html">Contact Us</a></li>
+        </ul>
+            <p>&copy; 2025  Code Aspect7.All rights reserved.</p>
+            <div class="social-links">
+    <a href="https://instagram.com/rockyyy_3012" class="fa-brands fa-instagram" title="Instagram" aria-label="Instagram" target="_blank" rel="noopener"></a>
+    <a href="https://github.com/your_github_username" class="fa-brands fa-github" title="GitHub" aria-label="GitHub" target="_blank" rel="noopener"></a>
+    <a href="https://twitter.com/your_twitter_username" class="fa-brands fa-twitter" title="Twitter" aria-label="Twitter" target="_blank" rel="noopener"></a>
+</div>
+    </footer>
+
+    <script>
+        // Testimonial Slider Logic
+let slideIndex = 0;
+const slides = document.querySelectorAll('.testimonial-item');
+const dots = document.querySelectorAll('.dot');
+
+function showSlide(n) {
+    if (n >= slides.length) { slideIndex = 0; }
+    if (n < 0) { slideIndex = slides.length - 1; }
+    
+    slides.forEach(slide => slide.classList.remove('active'));
+    dots.forEach(dot => dot.classList.remove('active'));
+    
+    slides[slideIndex].classList.add('active');
+    dots[slideIndex].classList.add('active');
+}
+
+function currentSlide(n) {
+    showSlide(slideIndex = n);
+}
+
+dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+        currentSlide(index);
+    });
+});
+
+// Auto-advance the slider
+setInterval(() => {
+    slideIndex++;
+    showSlide(slideIndex);
+}, 5000); // Change slide every 5 seconds
+
+// Initial call to show the first slide
+showSlide(slideIndex);
+
+// Fade-in on Scroll Logic
+const fadeInElements = document.querySelectorAll('.fade-in');
+
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+        }
+    });
+}, {
+    threshold: 0.1 // Trigger when 10% of the element is visible
+});
+
+fadeInElements.forEach(element => {
+    observer.observe(element);
+});
+    </script>
+</body>
+</html>

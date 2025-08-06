@@ -1,0 +1,193 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Contact-form</title>
+    <style>
+      /* Global Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: linear-gradient(135deg, #74ebd5, #9face6);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .contact-container {
+      background: rgb(244, 245, 247);
+      width: 90%;
+      max-width: 1500px;
+      display: flex;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    form.contact-left {
+      flex: 1;
+      padding: 40px 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-left-title h2{
+      font-weight: 600;
+      font-size: 40px;
+      color: #222;
+      margin-bottom: 10px;
+    }
+    button[type="Get in touch"] {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 30px;
+      font-size: 18px;
+      color: white;
+      background: linear-gradient(270deg, #8c4bff, #5470ff);
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      gap: 10px;
+      transition: background 0.4s ease;
+    }
+    .btn-contact {
+    text-decoration: none;
+    color: #fff;
+    background: linear-gradient(270deg, #6cdaf8, #21094b);
+    border: none;
+    border-radius: 50px;
+    padding: 15px 30px;
+    font-size: 16px;
+    min-width: 180px; /* Ensures similar width as submit */
+    min-height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 4px 16px rgba(33,9,75,0.08);
+    transition: 
+        background 0.4s,
+        color 0.4s,
+        transform 0.2s,
+        box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-contact:hover {
+    background: linear-gradient(90deg, #85e9fd 60%, #f8ec6c 100%);
+    color: #6bd0f4;
+    transform: translateY(-4px) scale(1.04) rotate(-2deg);
+    box-shadow: 0 8px 32px rgba(118, 204, 244, 0.18);
+}
+
+.btn-contact:hover img {
+    filter: brightness(0.7) drop-shadow(0 0 6px #f8ec6c);
+    transform: translateX(-4px) scale(1.1) rotate(-10deg);
+    transition: filter 0.3s, transform 0.3s;
+}
+
+    .contact-inputs {
+      width: 100%;
+      height: 50px;
+      padding-left: 25px;
+      font-weight: 500;
+      color: #090909;
+      border-radius: 50px;
+      border: none;
+      outline: none;
+    }
+
+    textarea.contact-inputs {
+      height: 140px;
+      border-radius: 20px;
+      padding-top: 12px;
+      resize: none;
+    }
+
+    .contact-inputs::placeholder {
+      color: #aaa;
+    }
+
+    .contact-inputs:focus {
+      border: 2px solid #8c4bff;
+    }
+
+    button[type="submit"] {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 30px;
+      font-size: 16px;
+      color: white;
+      background: linear-gradient(270deg, #f8ec6c, #21094b);
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      gap: 10px;
+      transition: background 0.4s ease;
+    }
+    button[type="submit"]:hover {
+      background: linear-gradient(270deg, #5470ff, #8c4bff);
+    }
+
+    button[type="submit"] img {
+      height: 20px;
+    }
+
+    .contact-right {
+      width: 150px;
+      background: url('assets/right_img.png') center/cover no-repeat;
+      display: none; /* Hidden on small screens */
+    }
+
+    @media (min-width: 800px) {
+      .contact-right {
+        display: block;
+      }
+      .contact-inputs {
+        width: 400px;
+      }
+    }
+    </style>
+</head>
+<body>
+
+     <div class="contact-container">
+    <form class="contact-left" action="https://api.web3forms.com/submit" method="POST">
+      <div class="contact-left-title">
+  <button type="button" onclick="window.location.href='index1.html';" class="btn-contact" style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(270deg, #f8ec6c, #21094b); border: none; border-radius: 50px; padding: 15px 30px; font-size: 16px; color: #fff; cursor: pointer;">
+    <img src="arrow_icon_left.png" alt="Arrow left icon" style="height: 20px;" />
+    Get in touch
+  </button>
+</div>
+      <input type="text" name="name" placeholder="Your name" required class="contact-inputs" />
+      <input type="text" name="subject" placeholder="Subject" required class="contact-inputs" />
+      <input type="email" name="email" placeholder="Your email" required class="contact-inputs" />
+      <input type="text" name="phone" placeholder="Your phone number" required class="contact-inputs" />
+      <textarea name="message" placeholder="Your message" required class="contact-inputs"></textarea>
+
+      <!-- Hidden inputs for Web3Forms -->
+      <input type="hidden" name="access_key" value="cbd3ceb8-d542-4a0b-8789-10124dab8d02" />
+      <input type="hidden" name="redirect" value="thank_you.html" />
+
+      <button type="submit">
+        Submit
+        <img src="arrow_icon.png" alt="Arrow icon" />
+      </button>
+    </form>
+    <div class="contact-right"></div>
+    <img src="image1.png" alt="Get in touch"/>
+  </div>
+
+</body>
+</html>
